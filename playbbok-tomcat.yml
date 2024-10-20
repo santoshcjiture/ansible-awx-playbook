@@ -2,8 +2,6 @@
   hosts: all
   become: true
   tasks:
-  - name: ping
-    ping
   - name: Install tomcat on host servers
     package: name=tomcat state=present
   - name: deploy sample.war file on tomcat
