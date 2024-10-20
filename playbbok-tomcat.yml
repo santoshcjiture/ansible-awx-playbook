@@ -1,0 +1,14 @@
+- name: Deploy .war file on tomcat server
+  hosts: all
+  become: true
+  tasks:
+  - name: ping
+    ping
+  - name: Install tomcat on host servers
+    package: name=tomcat state=present
+  - name: deploy sample.war file on tomcat
+    get_url=https://tomcat.apache.org/tomcat-7.0-doc/appdev/sample/sample.war dest=/usr/share/tomcat/webapps
+  - name: Restart tomcat server
+    service: name=tomcat state=restarted
+  - name: task2
+    command: echo "Hello"
